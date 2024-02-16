@@ -149,7 +149,7 @@ The United States Geological Survey (USGS) provided the necessary satellite imag
 
 Along with the similarity in seasonal timing (winter period of December and November) necessary for comparing the differences in land cover types, the Landsat OLI/TIRS images had also already been ortho-rectified and corrected using Landsat Collection Level 1 corrections for terrain to allow for direct comparison of the imagery. All the data are predefined and projected using Universal Transverse Mercator (UTM) Zone 46 for western part of the People's Republic of China (P.R.C.). 
 
-Basin-wide topographic raster data in digital format were available from the General Bathymetric Chart of the Oceans (GEBCO), NetCDF format, available from the \href{https://www.gebco.net/}{https://www.gebco.net/} GEBCO organisational website, which provided the necessary terrain reference data for the evaluation of relief of the surroundings. The topographic map has been plotted using Generic Mapping Tools (GMT) version 6.4.0 
+Basin-wide topographic raster data in digital format were available from the General Bathymetric Chart of the Oceans (GEBCO), NetCDF format, available from the \href{https://www.gebco.net/}{https://www.gebco.net/} GEBCO organisational website, which provided the necessary terrain reference data for the evaluation of relief of the surroundings. The topographic map has been plotted using Generic Mapping Tools (GMT) version 6.4.0 \cite{Wessel} using scripting methods for cartographic data visualization described in earlier works \cite{Lemenkova202217,Lemenkova202213,Lemenkova202206}.
 
 \begin{figure*}[h!]
   \centering
@@ -187,12 +187,30 @@ Public Domain, https://commons.wikimedia.org/w/index.php?curid=50903
 Satellite images were processed and classified using the Geographic Resources Analysis Support System (GRASS) Geographic Information System (GIS) which presents a powerful tool for cartographic data analysis and remote sensing data processing. The software version used in this study is 8.3.1.
 
 \subsection{Clustering}
-Four land cover types were chosen for the region of Nyenchen Tanglha Mountains and Lake Nam Co: 1) glacier and snow; 2) water (lake); 3) mountain rocks; 4) bare soil; 5) built-up areas; 6) forest areas and mixed vegetation. The information regarding the land cover classes was derived, simplified and adopted from the existing studies \cite{Chuetal2010,agriculture13020312,Zhangetal2016ecs21591}.
-Built-up areas cover all non-vegetated surfaces covered with impervious infrastructure, e.g., Lhasa city and other human settlements. Bare soil  class accounted for 
+
 
 \subsection{Classification}
 
+The information regarding the land cover classes was derived, simplified and adopted from the existing studies \cite{Chuetal2010,agriculture13020312,Zhangetal2016ecs21591}. As a result, 10 land cover types were chosen for the region of Nyenchen Tanglha Mountains and Lake Nam Co: 
+
+\begin{enumerate}
+	\item glacier and perennial snow; 
+	\item water (lake); 
+	\item mountain rocks; 
+	\item bare soil and gravel lands; 
+	\item built-up areas, cities and rural settlements; 
+	\item forest areas and mixed vegetation; 
+	\item mountain grasslands and shrubland; 
+	\item alpine steppe and meadows; 
+	\item irrigated land and agricultural lands;
+	\item sandy land and deserts. 
+\end{enumerate}
+	
+Built-up areas cover all non-vegetated surfaces covered with impervious infrastructure, e.g., Lhasa city and other human settlements. Bare soil class accounted for any other vegetation clearing or losses, either for as a result of glacier retreat or land degradation. 
+
 \subsection{Machine Learning}
+
+Following land cover class identification using previous steps of clustering and classification and re-classification, all the six images had 
 
 \section{Results}
 
