@@ -50,7 +50,7 @@
 \usepackage{amsfonts}
 \graphicspath{{figures/}} % path to folder with figures
 \usepackage{float}
-\usepackage{xcolor}
+%\usepackage{xcolor}
 \usepackage{chngcntr}
 \counterwithin*{equation}{section}
 \usepackage[super]{nth}
@@ -59,6 +59,10 @@
 \usepackage{subcaption}
 \usepackage{hyperref}
 \usepackage{lipsum} 
+\usepackage{array,booktabs}
+\usepackage[table,x11names]{xcolor}
+%\setlength{\extrarowheight}{2pt}
+%\usepackage[usenames,dvipsnames,table]{xcolor}
 
 %% The lineno packages adds line numbers. Start line numbering with
 %% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
@@ -516,7 +520,7 @@ The change detection analysis in land cover types from 2013 to 2023 demonstrated
     Class6 & 1222 & 1723 & 1386 & 304 & 1004 & 1158 \\
     Class7 & 232 & 1179 & 1483 & 442 & 194 & 213 \\
     Class8 & 375 & 226 & 896 & 305 & 380 & 248 \\
-    Class9 & 323 & 135 & 205 & 284 & 339 & 303 \\
+    \rowcolor{cyan!10} Class9 & 323 & 135 & 205 & 284 & 339 & 303 \\
     Class10 & 153 & 103 & 55 & 170 & 207 & 355 \\
   \end{tabular}
   \caption{Statistical results on the estimated classes of land cover types for the decade period (2013--2023) in Lake Nam Co and Nyenchen Tanglha Mountains, southern Tibetan Plateau}
@@ -525,11 +529,12 @@ The change detection analysis in land cover types from 2013 to 2023 demonstrated
 
 \begin{table*}[ht!]
   \centering
-  \scriptsize
-  %\small
+ % \scriptsize
+  \footnotesize
+ % \small
   \begin{tabular}{| ccccccccc |}
     \textbf{Year} & \textbf{Class} & \textbf{B-1 (Coastal aerosol)} & \textbf{B-2 (Blue)} & \textbf{B-3 (Green)} & \textbf{B-4 (Red)} & \textbf{B-5 (NIR)} & \textbf{B-6 (SWIR-1)} & \textbf{B-7 (SWIR-2)}\\
-    \hline
+    \toprule
     & Class1 & 7904.27 & 8106.02 & 7945.38 & 7228.67 & 7284.69 & 7572.53 & 7582.46 \\
     & Class 2 & 8508.47 & 8756.37 & 9321.74 & 9498.89 & 9900.25 & 10106.5 & 9633.54 \\
    & Class 3 & 8709.08 & 9152 & 10100.7 & 10799.8 & 11994 & 13437.3 & 12387.5 \\
@@ -540,7 +545,7 @@ The change detection analysis in land cover types from 2013 to 2023 demonstrated
      & Class 8 & 17362.5 & 18107 & 19353.8 & 20010.1 & 19179.9 & 12060.7 & 11578.9\\
      & Class 9 & 27310.4 & 28122.3 & 29221.5 & 29829.7 & 27038.8 & 9749.88 & 9817.43\\
     & Class 10 & 42888.4 & 43989.3 & 44341 & 45143.1 & 40544.1 & 9170.98 & 9636.08\\
-    \hline
+    \midrule
      & Class 1 & 8272.29 & 8371.34 & 8177.08 & 7476.17 & 7431.12 & 7574.78 & 7552.5 \\
      & Class 2 & 8204.58 & 8463.48 & 9055.48 & 9417.08 & 10251 & 10999.7 & 10240.4 \\
      & Class 3 & 8865.43 & 9324.01 & 10309.5 & 11164.8 & 12710.3 & 14291.1 & 12913.8 \\
@@ -551,7 +556,7 @@ The change detection analysis in land cover types from 2013 to 2023 demonstrated
      & Class 8 & 12682.7 & 13823.3 & 16477.3 & 18448.1&  20513.5 & 23334.6 & 21735.4 \\
      & Class 9 & 24665.2 & 25478.5 & 26338.5 & 27058.7 & 25930.3 & 11432.3 & 11267 \\
      & Class 10 & 39402.6 & 40244.2 & 40435.2 & 41238.1 & 38168.3 & 9518.68 & 9966.9 \\
-     \hline
+     \midrule
     & Class1 & 8207.42 & 8439.38 & 8233.51 & 7474.05 & 7441.85 & 7688.77 & 7629.16 \\
      & Class 2 & 8101.68 & 8346.46 & 8895.09 & 9233.14 & 9886.22 & 10708.3 & 10000.1 \\
      & Class 3 & 8630.99 & 9049.81 & 9934.64 & 10654.1 & 11963.1 & 13492.5 & 12244.2 \\
@@ -562,18 +567,18 @@ The change detection analysis in land cover types from 2013 to 2023 demonstrated
      & Class 8 & 10418.7 & 11236 & 13168.6 & 15033.5 & 18044.1 & 22060.6 & 19528.7 \\
      & Class 9 & 12403.3 & 13574.6 & 16240.9 & 18317 & 20577.8 & 24046.2 & 22175.1 \\
      & Class 10 & 36784.6 & 37830.7 & 38590.8 & 39104.3 & 33932.7 & 9116.02 & 9459.84 \\
-     \hline
-     & Class1 & X & X & X & X & X & X & X \\
-    & Class 2 & X & X & X & X & X & X & X \\
-     & Class 3 & X & X & X & X & X & X & X \\
-     & Class 4 & X & X & X & X & X & X & X \\
-     & Class 5 & X & X & X & X & X & X & X \\
-     \textbf{2019} & Class 6 & X & X & X & X & X & X & X \\
-     & Class 7 & X & X & X & X & X & X & X \\
-     & Class 8 & X & X & X & X & X & X & X \\
-     & Class 9 & X & X & X & X & X & X & X \\
-     & Class 10 & X & X & X & X & X & X & X \\
-     \hline
+     \midrule
+     & Class1 & 7994.67 & 8247.52 & 8320.2 & 7413.97 & 7459.11 & 7722.77 & 7702.37 \\
+    & Class 2 & 8414.58 & 8729.89 & 9490.6 & 9902.52 & 10805.7 & 11208.7 & 10487.6 \\
+     & Class 3 & 8956.06 & 9508.01 & 10658.5 & 11580.7 & 13264.5 & 14710.3 & 13338.4 \\
+     & Class 4 & 9553.83 & 10199.7 & 11560.2 & 12820.4 & 15165.5 & 17781 & 15884.7 \\
+     & Class 5 & 10160.8 & 10907.8 & 12613.9 & 14190.4 & 16910.3 & 20489.2 & 18357.5 \\
+     \textbf{2019} & Class 6 & 12036.5 & 13144.2 & 15687.5 & 17648.8 & 20018.1 & 22890.7 & 21148.3 \\
+     & Class 7 & 15767.8 & 16588.3 & 18005.3 & 18906.4 & 19403.6 & 13146.8 & 12615.5 \\
+     & Class 8 & 24654.3 & 25360.9 & 26218.7 & 27155.8 & 26730.8 & 12501.4 & 12444.6 \\
+     & Class 9 & 36601.2 & 37073 & 36740.1 & 37443.3 & 35498.7 & 11606 & 12105.3 \\
+     & Class 10 & 47852.7 & 48543.6 & 47677.1 & 48272.5 & 45480.9 & 12244.9 & 13063.9 \\
+     \midrule
     & Class1 & X & X & X & X & X & X & X \\
     & Class 2 & X & X & X & X & X & X & X \\
      & Class 3 & X & X & X & X & X & X & X \\
@@ -584,7 +589,7 @@ The change detection analysis in land cover types from 2013 to 2023 demonstrated
      & Class 8 & X & X & X & X & X & X & X \\
      & Class 9 & X & X & X & X & X & X & X \\
      & Class 10 & X & X & X & X & X & X & X \\
-     \hline
+     \midrule
     & Class 1 & 8225.27 & 8300.85 & 8102.96 & 7327.79 & 7312.44 & 7513.91 & 7517.34 \\
     & Class 2 & 8073.19 & 8284.16 &8801.76 & 9109.73 & 9843.17 & 10275.8 & 9620.98 \\
     & Class 3 & 8832.48 & 9282.49 & 10215.6 & 10953.8 & 12363.4 & 13356.3 & 12102.7 \\
@@ -594,9 +599,10 @@ The change detection analysis in land cover types from 2013 to 2023 demonstrated
     &  Class 7 & 12936.5 & 14184.9 & 16884.7 & 18902.9 & 21241.8 & 23855.5 & 22048.8 \\
     & Class 8 & 16357.9 & 16888.4 & 17874.3 & 18587.4 & 18805.5 & 12614 & 11950.4 \\
     & Class 9 & 27751 & 28196.9 & 28287.2 & 28822.8 & 27646.7 & 11068.7 & 11076.4 \\
-    & Class 10 & 40314.8 & 41009.3 & 40608.8 & 41181.2 & 38501.7 & 10699.5 & 11135.5
+    & Class 10 & 40314.8 & 41009.3 & 40608.8 & 41181.2 & 38501.7 & 10699.5 & 11135.5\\
+    \bottomrule
      \end{tabular}
-  \caption{Statistical results on the estimated values of class means for each band of Landsat images for the decade period (2013--2023)}
+  \caption{Temporal dynamics of values of class means for each band of Landsat images for land cover classes around Nyenchen Tanglha Mountains and Lake Nam Co, during the the recent decade period (2013--2023) evaluated from the statistical data analysis}
   \label{tab01}
 \end{table*}
 
