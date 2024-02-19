@@ -239,19 +239,19 @@ Satellite images were processed and classified using the Geographic Resources An
 \begin{figure*}[h!]
   \centering
   \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Tibet_345.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_06a.jpg} \\
     \small (a): Colour composite bands 3-4-5
   \end{tabular}
   \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Tibet_754.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_06b.jpg} \\
     \small (b): Colour composite of bands 7-5-4 
   \end{tabular}
     \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Tibet_543.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_06c.jpg} \\
     \small (c): Colour composite of bands 5-4-3
   \end{tabular}
   \caption{Colour composites of the satellite image Landsat 8-9 OLI/TIRS (example of 2013): combination of various multispectral bands for identification of land features performed in the GRASS GIS where Band 3 correspond to Green; Band 4 -- to Red; Band 5 -- to Near Infrared (NIR); Band 7 -- to Shortwave Infrared (SWIR) 2. Original Landsat data credit: USGS: Compilation and processing: author.}
-  \label{fig08n}
+  \label{fig06}
 \end{figure*}
 
 \subsection{Colour composites}
@@ -267,7 +267,7 @@ d.out.file output=Tibet_754 \
 	format=jpg --overwrite
 \end{verbatim}
 
-The representation of selected colour composites is shown in Figure \ref{fig08n} with the selected bands 3-4-5, 7-5-4  and 5-4-3. Here, the correspondence of the bands in Landsat 8-9 OLI/TIRS to the spectral bands is as follows: Band 3 - Green; Band 4 - Red; Band 5 - Near Infrared (NIR); Band 7 - Shortwave Infrared (SWIR) 2. The use of various spectral bands helps to better detect land cover types otherwise hidden from the eyes and to better discriminate the border between distinct land cover types and water/snow boundaries. 
+The representation of selected colour composites is shown in Figure \ref{fig06} with the selected bands 3-4-5, 7-5-4  and 5-4-3. Here, the correspondence of the bands in Landsat 8-9 OLI/TIRS to the spectral bands is as follows: Band 3 - Green; Band 4 - Red; Band 5 - Near Infrared (NIR); Band 7 - Shortwave Infrared (SWIR) 2. The use of various spectral bands helps to better detect land cover types otherwise hidden from the eyes and to better discriminate the border between distinct land cover types and water/snow boundaries. 
 
 \subsection{Clustering}
 
@@ -295,31 +295,31 @@ i.maxlik group=L_2013 subgroup=res_30m \
  \begin{figure*}[h!]
   \centering
   \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_06a.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_07a.jpg} \\
     \small (a): 2013
   \end{tabular}
   \begin{tabular}[b]{c}
-    \includegraphics[width=5.4cm]{Fig_06b.jpg} \\
+    \includegraphics[width=5.4cm]{Fig_07b.jpg} \\
     \small (b): 2015 
   \end{tabular}
     \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_06c.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_07c.jpg} \\
     \small (c): 2017
   \end{tabular}
   \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_06d.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_07d.jpg} \\
     \small (d): 2019 
   \end{tabular}
    \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_06e.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_07e.jpg} \\
     \small (e): 2021
   \end{tabular}
   \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_06f.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_07f.jpg} \\
     \small (f): 2023
   \end{tabular}
   \caption{Clustering of the multispectral satellite images Landsat 8-9 OLI/TIRS using k-means approach. Source: author.}
-  \label{fig06}
+  \label{fig07}
 \end{figure*}
 
  \subsection{Mapping}
@@ -387,32 +387,34 @@ Built-up areas cover all non-vegetated surfaces covered with impervious infrastr
 \begin{figure*}[h!]
   \centering
   \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_07a.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_08a.jpg} \\
     \small (a): 2013
   \end{tabular}
   \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_07b.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_08b.jpg} \\
     \small (b): 2015 
   \end{tabular}
     \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_07c.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_08c.jpg} \\
     \small (c): 2017
   \end{tabular}
   \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_07d.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_08d.jpg} \\
     \small (d): 2019 
   \end{tabular}
    \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_07e.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_08e.jpg} \\
     \small (e): 2021
   \end{tabular}
   \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_07f.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_08f.jpg} \\
     \small (f): 2023
   \end{tabular}
   \caption{Accuracy assessment of the satellite images Landsat 8-9 OLI/TIRS images: mapping rejection probability values that indicate pixel classification confidence levels performed using a chi square test. Source: author.}
-  \label{fig07}
+  \label{fig08}
 \end{figure*}
+
+The results of the visualised maps of clusters are shown in Figure \ref{fig07} and performed accuracy assessment is presented in Figure \ref{fig08}.
 
 \subsection{Machine Learning}
 
@@ -441,31 +443,31 @@ Afterwards, these training pixels were used to perform a classification on the L
 \begin{figure*}[h!]
   \centering
   \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_08a.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_09a.jpg} \\
     \small (a): 2013
   \end{tabular}
   \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_08b.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_09b.jpg} \\
     \small (b): 2015 
   \end{tabular}
     \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_08c.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_09c.jpg} \\
     \small (c): 2017
   \end{tabular}
   \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_08d.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_09d.jpg} \\
     \small (d): 2019 
   \end{tabular}
    \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_08e.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_09e.jpg} \\
     \small (e): 2021
   \end{tabular}
   \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_08f.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_09f.jpg} \\
     \small (f): 2023
   \end{tabular}
   \caption{Machine learning based classification of the satellite images Landsat 8-9 OLI/TIRS images: mapping land cover types using Random Forest classification algorithms by training dataset performed in the GRASS GIS. Source: author.}
-  \label{fig08}
+  \label{fig09}
 \end{figure*}
 
 \begin{verbatim}
@@ -498,9 +500,71 @@ i.maxlik group=L_2013 subgroup=res_30m \
   
 \section{Results and Discussion}
 
-The results of the visualised maps of clusters are shown in Figure \ref{fig06}.
+The change detection analysis in land cover types from 2013 to 2023 demonstrated shifts in ice and snow coverage within both the basin of the Lake Nam Co and the ranges of the Nyenchen Tanglha Mountains, Figure \ref{fig09}. The computer land cover classes for each of the category is summarised in Table \ref{tab01}.
 
-\pagebreak
+\begin{table}[H]
+  \centering
+  \begin{tabular}{| ccccccc |}
+    \textbf{Year} & \textbf{2013} & \textbf{2015} & \textbf{2017} & \textbf{2019} & \textbf{2021} & \textbf{2023} \\
+    \hline
+    \hline
+    Class1 & 690 & 612 & 719 & 766 & 693 & 653 \\
+    Class2 & 399 & 467 & 456 & 501 & 456 & 380 \\
+    Class3 & 541 & 803 & 562 & 863 & 689 & 632 \\
+    Class4 & 1105 & 208 & 823 & 1601 & 1190 & 1172 \\
+    Class5 & 1578 & 1336 & 122 & 1458 & 1544 & 1696 \\
+    Class6 & 1222 & 1723 & 1386 & 304 & 1004 & 1158 \\
+    Class7 & 232 & 1179 & 1483 & 442 & 194 & 213 \\
+    Class8 & 375 & 226 & 896 & 305 & 380 & 248 \\
+    Class9 & 323 & 135 & 205 & 284 & 339 & 303 \\
+    Class10 & 153 & 103 & 55 & 170 & 207 & 355 \\
+  \end{tabular}
+  \caption{Statistical results on the estimated classes of land cover types for the decade period (2013--2023) in Lake Nam Co and Nyenchen Tanglha Mountains, southern Tibetan Plateau}
+  \label{tab01}
+\end{table}
+
+\begin{table*}[ht]
+  \centering
+  \small
+  \begin{tabular}{| cccccccc |}
+    \textbf{Year} & \textbf{B-1 (Coastal aerosol)} & \textbf{B-2 (Blue)} & \textbf{B-3 (Green)} & \textbf{B-4 (Red)} & \textbf{B-5 (NIR)} & \textbf{B-6 (SWIR-1)} & \textbf{B-7 (SWIR-2)}\\
+    \hline
+    \hline
+     &  &  &  &  \textbf{2013} &  &  & \\
+     \hline
+    Class1 & 7904.27 & 8106.02 & 7945.38 & 7228.67 & 7284.69 & 7572.53 & 7582.46 \\
+    Class2 & 8073.19 & 8284.16 &8801.76 & 9109.73 & 9843.17 & 10275.8 & 9620.98 \\
+    Class3 & 8832.48 & 9282.49 & 10215.6 & 10953.8 & 12363.4 & 13356.3 & 12102.7 \\
+    Class4 & 9279.85 & 9880.82 & 11101.3 & 12293.7 & 14477.5 & 16463.5 & 14579.4 \\
+    Class5 & 9709.13 & 10384.6 & 11833.6 & 13296.3 & 15982.1 & 19079.3 & 16807.1 \\
+    Class6 & 10363.1 & 11160.2 & 12984.6 & 14793.9 & 17772.5 & 21578.6 & 19141.2 \\
+    Class7 & 12936.5 & 14184.9 & 16884.7 & 18902.9 & 21241.8 & 23855.5 & 22048.8 \\
+    Class8 & 16357.9 & 16888.4 & 17874.3 & 18587.4 & 18805.5 & 12614 & 11950.4 \\
+    Class9 & 27751 & 28196.9 & 28287.2 & 28822.8 & 27646.7 & 11068.7 & 11076.4 \\
+    Class10 & 40314.8 & 41009.3 & 40608.8 & 41181.2 & 38501.7 & 10699.5 & 11135.5 \\
+    &  &  &  &  \textbf{2015} &  &  & \\
+     \hline
+    Class1 & X & X & X & X & X & X & X \\
+    &  &  &  &  \textbf{2017} &  &  & \\
+     \hline
+    Class1 & X & X & X & X & X & X & X \\
+    &  &  &  &  \textbf{2019} &  &  & \\
+     \hline
+    Class1 & X & X & X & X & X & X & X \\
+    &  &  &  &  \textbf{2021} &  &  & \\
+     \hline
+    Class1 & X & X & X & X & X & X & X \\
+    &  &  &  &  \textbf{2023} &  &  & \\
+     \hline
+    Class1 & X & X & X & X & X & X & X \\
+  \end{tabular}
+  \caption{Statistical results on the estimated values of class means for each band of Landsat images for the decade period (2013--2023) in Lake Nam Co and Nyenchen Tanglha Mountains, southern Tibetan Plateau}
+  \label{tab01}
+\end{table*}
+
+
+
+%\pagebreak
 \section{Conclusion}
 
 \subsection{Summary}
