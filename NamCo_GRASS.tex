@@ -236,48 +236,6 @@ Along with the similarity in seasonal timing (winter period of December and Nove
 \section{Methods}
 Satellite images were processed and classified using the Geographic Resources Analysis Support System (GRASS) Geographic Information System (GIS) which presents a powerful tool for cartographic data analysis and remote sensing data processing \cite{GRASS_GIS_software}. The software version used in this study is 8.3.1.
 
-\subsection{Clustering}
-
-First, the computational region has been set to match the scene extent which has the following coordinates of the central point: 90.64° N; 30.31° W. This was performed using the 'i.group' module as follows (the example in the snippet of codes here and below is given for the satellite image on 2013):
- 
-\begin{verbatim}
-i.group group=L_2013 subgroup=res_30m \
-  input=L_2013_01,L_2013_02<...>L_2013_07
-\end{verbatim}
-
-Afterwards, the clustering has been performed using 'i.cluster' module which generates the signature file using data on spectral reflectance in the bands of the Landsat images and reports it using k-means clustering algorithm as follows: 
-\begin{verbatim}
-i.cluster group=L_2013 subgroup=res_30m \
-  signaturefile=cluster_L_2013 \
-  classes=10 reportfile=rep_clust_L_2013.txt
- \end{verbatim}
- 
- Following that, the next step included the classification process which was implemented using the maximum likelihood discriminant analysis by i.maxlik module of GRASS GIS. The scripting code used for classification is as follows: 
- \begin{verbatim}
-i.maxlik group=L_2013 subgroup=res_30m \
-  signaturefile=cluster_L_2013 \
-  output=L_2013_clusters reject=L_2013_cl_r
- \end{verbatim}
- 
- The visualization of the results of the classification was technically done using the set of cartographic modules in GRASS GIS as follows: 
- 
-  \begin{verbatim}
-r.colors L_2013_clusters color=roygbiv
-g.region raster=L_2013_01 -p
-d.mon wx0
-d.rast shaded_relief
-d.rast shaded_relief1
-d.rast L_2013_clusters
-d.grid -g size=00:30:00 color=white \
-	width=0.1 fontsize=12 text_color=white
-d.legend raster=L_2013_clusters 
-	title="31 December 2013" 
-	title_fontsize=14 font="Helvetica" 
-	fontsize=13 bgcolor=white 
-	border_color=white
-d.out.file output=Tibet_2013
- \end{verbatim}
- 
 \begin{figure*}[h!]
   \centering
   \begin{tabular}[b]{c}
@@ -308,33 +266,49 @@ d.out.file output=Tibet_2013
   \label{fig06}
 \end{figure*}
 
-\subsection{Classification}
+\subsection{Clustering}
 
-The information regarding the land cover classes was derived, simplified and adopted from the existing studies \cite{Chuetal2010,agriculture13020312,Zhangetal2016ecs21591}. As a result, 10 land cover types were chosen for the region of Nyenchen Tanglha Mountains and Lake Nam Co: 
+First, the computational region has been set to match the scene extent which has the following coordinates of the central point: 90.64° N; 30.31° W. This was performed using the 'i.group' module as follows (the example in the snippet of codes here and below is given for the satellite image on 2013):
+ 
+\begin{verbatim}
+i.group group=L_2013 subgroup=res_30m \
+  input=L_2013_01,L_2013_02<...>L_2013_07
+\end{verbatim}
 
-\begin{enumerate}
-	\item glacier and perennial snow; 
-	\item water; 
-	\item mountain rocks; 
-	\item bare soil and gravel lands; 
-	\item built-up areas, cities and rural settlements; 
-	\item forest areas and mixed vegetation; 
-	\item mountain grasslands and shrubland; 
-	\item alpine steppe and meadows; 
-	\item irrigated and agricultural lands;
-	\item sandy land and deserts. 
-\end{enumerate}
-	
-Built-up areas cover all non-vegetated surfaces covered with impervious infrastructure, e.g., Lhasa city and other human settlements. Bare soil class accounted for any other vegetation clearing or losses, either for as a result of glacier retreat or land degradation. 
-
-\subsection{Machine Learning}
-
-Following land cover class identification using previous steps of clustering and classification and re-classification, all the six images had 
-
-%\pagebreak
-\subsection{Accuracy Assessment}
-
-\section{Results}
+Afterwards, the clustering has been performed using 'i.cluster' module which generates the signature file using data on spectral reflectance in the bands of the Landsat images and reports it using k-means clustering algorithm as follows: 
+\begin{verbatim}
+i.cluster group=L_2013 subgroup=res_30m \
+  signaturefile=cluster_L_2013 \
+  classes=10 reportfile=rep_clust_L_2013.txt
+ \end{verbatim}
+ 
+ Following that, the next step included the classification process which was implemented using the maximum likelihood discriminant analysis by i.maxlik module of GRASS GIS. The scripting code used for classification is as follows: 
+ \begin{verbatim}
+i.maxlik group=L_2013 subgroup=res_30m \
+  signaturefile=cluster_L_2013 \
+  output=L_2013_clusters reject=L_2013_cl_r
+ \end{verbatim}
+ 
+ \subsection{Mapping}
+ 
+The visualization of the results of the classification was technically done using the set of cartographic modules in GRASS GIS as follows: 
+ 
+\begin{verbatim}
+r.colors L_2013_clusters color=roygbiv
+g.region raster=L_2013_01 -p
+d.mon wx0
+d.rast shaded_relief
+d.rast shaded_relief1
+d.rast L_2013_clusters
+d.grid -g size=00:30:00 color=white \
+	width=0.1 fontsize=12 text_color=white
+d.legend raster=L_2013_clusters 
+	title="31 December 2013" 
+	title_fontsize=14 font="Helvetica" 
+	fontsize=13 bgcolor=white 
+	border_color=white
+d.out.file output=Tibet_2013
+ \end{verbatim}
 
 \begin{figure*}[h!]
   \centering
@@ -366,6 +340,47 @@ Following land cover class identification using previous steps of clustering and
   \label{fig07}
 \end{figure*}
 
+\subsection{Classification}
+
+The information regarding the land cover classes was derived, simplified and adopted from the existing studies \cite{Chuetal2010,agriculture13020312,Zhangetal2016ecs21591}. As a result, 10 land cover types were chosen for the region of Nyenchen Tanglha Mountains and Lake Nam Co: 
+
+\begin{enumerate}
+	\item glacier and perennial snow; 
+	\item water; 
+	\item mountain rocks; 
+	\item bare soil and gravel lands; 
+	\item built-up areas, cities and rural settlements; 
+	\item forest areas and mixed vegetation; 
+	\item mountain grasslands and shrubland; 
+	\item alpine steppe and meadows; 
+	\item irrigated and agricultural lands;
+	\item sandy land and deserts. 
+\end{enumerate}
+
+The reclassification of the images with identified classes was performed using the 'r.reclass' module of GRASS GIS by the following code: 
+
+\begin{verbatim}
+echo "
+1 = 1 water
+2 = 2 mountain rocks
+3 = 3 bare soil and gravel lands
+4 = 4 built-up
+5 = 5 forest
+6 = 6 grasslands
+7 = 7 alpine steppe and meadows
+8 = 8 agricultural lands
+9 = 9 perennial snow
+10 = 10 glacier" > landuserecl.txt --overwrite
+# reclassing:
+r.reclass input=L_2013_clusters output=T_LCC_2013 \
+  rules=landuserecl.txt \
+  title="LCC 2013" --overwrite
+# re-check of the categories: 
+r.category T_LCC_2013
+\end{verbatim}
+	
+Built-up areas cover all non-vegetated surfaces covered with impervious infrastructure, e.g., Lhasa city and other human settlements. Bare soil class accounted for any other vegetation clearing or losses, either for as a result of glacier retreat or land degradation. 
+
 \begin{figure*}[h!]
   \centering
   \begin{tabular}[b]{c}
@@ -395,6 +410,37 @@ Following land cover class identification using previous steps of clustering and
   \caption{Machine learning based classification of the satellite images Landsat 8-9 OLI/TIRS images: mapping land cover types using Random Forest classification algorithms by training dataset performed in the GRASS GIS. Source: author.}
   \label{fig08}
 \end{figure*}
+
+\subsection{Machine Learning}
+
+Following land cover class identification using previous steps of clustering and classification and re-classification, all the six images had been reclassified using machine learning (ML) methods with a special approach of Random Forest (RF). First, the training pixels have been generated from an older land cover classification in 2013 using the 'r.random' module of the GRASS GIS as follows: 
+
+\begin{verbatim}
+r.random input=L_2013_clusters seed=100 \
+	npoints=1000 raster=training_pixels --overwrite
+\end{verbatim}
+
+Afterwards, these training pixels were used to perform a classification on the Landsat images for 2015, 2017, 2019, 2021 and 2023. The training of supervised approach was performed using the 'RandomForestClassifier' function in the 'r.learn.train' model of GRASS GIS and then evaluated the probability of each pixel to be assigned into the specific land coevr class using the 'r.learn.predict' module of GRASS GIS as follows:
+
+\begin{verbatim}
+r.learn.train group=L_2013 \
+	training_map=training_pixels \
+	model_name=RandomForestClassifier \
+	n_estimators=500 \
+	save_model=rf_model.gz --overwrite
+# perform prediction using r.learn.predict
+r.learn.predict group=L_2013 \
+	load_model=rf_model.gz \
+	output=rf_classification --overwrite
+r.category rf_classification
+\end{verbatim}
+
+The raster categories are automatically applied to the classification output which was inspected using the 'r.category' module.
+
+%\pagebreak
+\subsection{Accuracy Assessment}
+
+\section{Results}
 
 \section{Discussion}
 
