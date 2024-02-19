@@ -250,7 +250,7 @@ Satellite images were processed and classified using the Geographic Resources An
     \includegraphics[width=5.5cm]{Tibet_543.jpg} \\
     \small (c): Colour composite of bands 5-4-3
   \end{tabular}
-  \caption{Colour composites of the satellite image Landsat 8-9 OLI/TIRS (example of 2013): combination of various multispectral bands for identification of land features performed in the GRASS GIS. Source: author.}
+  \caption{Colour composites of the satellite image Landsat 8-9 OLI/TIRS (example of 2013): combination of various multispectral bands for identification of land features performed in the GRASS GIS where Band 3 correspond to Green; Band 4 -- to Red; Band 5 -- to Near Infrared (NIR); Band 7 -- to Shortwave Infrared (SWIR) 2. Original Landsat data credit: USGS: Compilation and processing: author.}
   \label{fig08n}
 \end{figure*}
 
@@ -438,22 +438,6 @@ r.random input=L_2013_clusters seed=100 \
 \end{verbatim}
 
 Afterwards, these training pixels were used to perform a classification on the Landsat images for 2015, 2017, 2019, 2021 and 2023. The training of supervised approach was performed using the 'RandomForestClassifier' function in the 'r.learn.train' model of GRASS GIS and then evaluated the probability of each pixel to be assigned into the specific land cover class using the 'r.learn.predict' module of GRASS GIS as follows:
-
-\begin{verbatim}
-r.learn.train group=L_2013 \
-	training_map=training_pixels \
-	model_name=RandomForestClassifier \
-	n_estimators=500 \
-	save_model=rf_model.gz --overwrite
-# perform prediction using r.learn.predict
-r.learn.predict group=L_2013 \
-	load_model=rf_model.gz \
-	output=rf_classification --overwrite
-r.category rf_classification
-\end{verbatim}
-
-The raster categories are automatically applied to the classification output which was inspected using the 'r.category' module.
-
 \begin{figure*}[h!]
   \centering
   \begin{tabular}[b]{c}
@@ -484,6 +468,21 @@ The raster categories are automatically applied to the classification output whi
   \label{fig08}
 \end{figure*}
 
+\begin{verbatim}
+r.learn.train group=L_2013 \
+	training_map=training_pixels \
+	model_name=RandomForestClassifier \
+	n_estimators=500 \
+	save_model=rf_model.gz --overwrite
+# perform prediction using r.learn.predict
+r.learn.predict group=L_2013 \
+	load_model=rf_model.gz \
+	output=rf_classification --overwrite
+r.category rf_classification
+\end{verbatim}
+
+The raster categories are automatically applied to the classification output which was inspected using the 'r.category' module.
+
 \subsection{Accuracy Assessment}
 
 Accuracy assessment of the classification performed using by i.maxlik module evaluates the correctness of the classification the cell spectral reflectances in imagery data which is based on the spectral signature information. Technically, the code used for plotting accuracy assessment maps is presented below with a special function 'reject=': 
@@ -508,12 +507,13 @@ The results of the visualised maps of clusters are shown in Figure \ref{fig06}.
 Current glacier retreat and snow melt in the mountainous regions of Nyenchen Tanglha Mountains and Lake Nam Co across Tibetan Plateau have demonstrated increase and fluctuations in extent as climate warming continues to persist over the past ten year (2013 to 2023). If current trends continue then the increase in the increase of bare soil and degraded lands will also continue as a result of glacier retreat, placing more natural land cover types at risk of degrading. Remote sensing data processing using machine learning (ML) techniques implemented in GRASS GIS have proven to be a useful tool in assessing the possible glacial-hydrological impacts these land cover types may have on a regional scale in Lhasa terrain, especially for basin of Lake Nam Co and the surrounding areas.  
 
 \subsection{Perspectives and applications}
-Lack of current similar studies that apply machine learning to remote sensing data processing for environmental monitoring of the Qinghai-Tibetan Plateau region motivated this study to contribute to the evaluation of global change effects on the western Chinese ecosystems through mapping land cover types in the study area for comparative analysis of changes resulting from glacier retreat and snow melt in Nyenchen Tanglha Mountains. The combination of remote sensing data analysis and approaches of machine learning methods to data modelling essentially provide  environmental estimates and cartographic visualization in the form of analyse satellite imagery. These data could then be incorporated into future modelling of Tibetan Plateau at the enlarged scale for prediction of environmental changes and hydrological modelling aimed at sustainable development and conservation of alpine high-altitude ecosystems of China. 
+Lack of current similar studies that apply machine learning to remote sensing data processing for environmental monitoring of the Qinghai-Tibetan Plateau region motivated this study to contribute to the evaluation of global change effects on the western Chinese ecosystems through mapping land cover types in the study area for comparative analysis of changes resulting from glacier retreat and snow melt in Nyenchen Tanglha Mountains. The combination of remote sensing data analysis and approaches of machine learning methods to data modelling essentially provide  environmental estimates and cartographic visualization in the form of analyse satellite imagery. These data could then be incorporated into future modelling of Tibetan Plateau at the enlarged scale for prediction of environmental changes and hydrological modelling aimed at sustainable development and conservation of alpine high-altitude ecosystems of western China. 
 
-\subsection{Future outlooks}
 Using scripting techniques and advanced cartographic solutions of GRASS GIS that employ machine learning approach, we identified the periods of glacier retreat and advances detected on a series of the multispectral satellite images. The obtained results help to better understand biennial fluctuations of glacier extent in Nyenchen Tanglha Mountains and Lake Nam Co. Such knowledge can be used for landscape analysis explaining the effects of global warming processes that lead to either a favourable greening of land cover types around the Lake Nam Co or, in contrast, landscape degradation due to the desiccation and aridification of alpine ecosystems of the Tibetan Plateau, China.
 
-However, more research needs to be carried out as to how changes in specific land cover types might alter the glaciological-hydrological cycle of other basin of the alpine lake in Tibetan Plateau in order to compare the behaviour of small-sized lakes that may be facing similar effects from global warming resulted in glacier retreat, analyse and compare those outcomes with regard to the Lake Nam Co. More analysis is also required in order to increase both the extent of the land cover classification using a mosaic of images, and to ascertain which specific areas and landscapes of the Qinghai-Tibet Plateau would be at most risk of land degradation from global warming that is reflected in the increased snow melt and rates of glacier retreat. This may be possible with a greater availability of higher-resolution remotely sensed data on both spatial and temporal scales (for instance, such as SPOT images) along with larger territorial extent of the analysed dataset as a reference database. 
+\subsection{Future outlooks}
+
+More research needs to be carried out as to how changes in specific land cover types might alter the glaciological-hydrological cycle of other basin of the alpine lake in Tibetan Plateau in order to compare the behaviour of small-sized lakes that may be facing similar effects from global warming resulted in glacier retreat, analyse and compare those outcomes with regard to the Lake Nam Co. More analysis is also required in order to increase both the extent of the land cover classification using a mosaic of images, and to ascertain which specific areas and landscapes of the Qinghai-Tibet Plateau would be at most risk of land degradation from global warming that is reflected in the increased snow melt and rates of glacier retreat. This may be possible with a greater availability of higher-resolution remotely sensed data on both spatial and temporal scales (for instance, such as SPOT images) along with larger territorial extent of the analysed dataset as a reference database. 
 
 Both paths are plausible and reasonable given the access to the available datasets with high-resolution imagery covering the target areas of Tibetan Plateau and data processing toolsets. To conclude, we contend that the methodological approaches to which software and data future studies use lies in what extent of the Tibetan Plateau region is selected as a target area. We conclude with suggested strategies of landscape analysis that integrate scripting techniques, machine learning algorithms and satellite image processing can be implemented with geological and topographic data to facilitate a further and more detailed analysis on the complex interrelations between topographic, hydrological and environmental processes as key factors in landscape greening of the Tibetan Plateau, China.
 
