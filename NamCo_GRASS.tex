@@ -416,7 +416,9 @@ Built-up areas cover all non-vegetated surfaces covered with impervious infrastr
 
 \subsection{Machine Learning}
 
-Following land cover class identification using previous steps of clustering and classification and re-classification, all the six images had been reclassified using machine learning (ML) methods with a special approach of Random Forest (RF). First, the training pixels have been generated from an older land cover classification in 2013 using the 'r.random' module of the GRASS GIS as follows: 
+Following land cover class identification using previous steps of clustering and classification and re-classification, all the six images had been reclassified using machine learning (ML) methods with a special approach of Random Forest (RF). 
+
+This approach employs the Scikit-Learn ML library of Python programming language along with its Pandas package for complimentary data processing. The essential idea of Random Forest algorithm lies in integrating the data to average noisy yet unbiased models of random data. In this way, RF reduces the variance in dataset. Since trees can capture complex interaction in cells, they are used in RF algorithm as a key approach to data modelling and analysis. First, the training pixels have been generated from an older land cover classification in 2013 using the 'r.random' module of the GRASS GIS as follows: 
 
 \begin{verbatim}
 r.random input=L_2013_clusters seed=100 \
@@ -442,6 +444,17 @@ The raster categories are automatically applied to the classification output whi
 
 \subsection{Accuracy Assessment}
 
+Accuracy assessment of the classification performed using by i.maxlik module evaluates the correctness of the classification the cell spectral reflectances in imagery data which is based on the spectral signature information. Technically, the code used for plotting accuracy assessment maps is presented below with a special function 'reject=': 
+
+\begin{verbatim}
+i.maxlik group=L_2013 subgroup=res_30m \
+	signaturefile=cluster_L_2013 \
+	output=L_2013_clusters 
+	reject=L_2013_cluster_reject 
+\end{verbatim}
+ 
+ The accuracy assessment evaluates the probability of correctly classified pixels and visualises the results on a map holding reject threshold results in percentage of the correctly classified pixels. The logic underlying this method is based on the chi square test which evaluates each discriminant result at various threshold levels of confidence to determine at what agreement each cell categorised correctly. Hence, it is the reject threshold map which contains the computed index to the calculated confidence level for each classified pixel in the classified raster scene of the satellite image. 
+  
 \section{Results and Discussion}
 
 The results of the visualised maps of clusters are shown in Figure \ref{fig06}.
