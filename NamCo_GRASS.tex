@@ -239,6 +239,62 @@ Satellite images were processed and classified using the Geographic Resources An
 \begin{figure*}[h!]
   \centering
   \begin{tabular}[b]{c}
+    \includegraphics[width=5.5cm]{Tibet_345.jpg} \\
+    \small (a): Colour composite bands 3-4-5
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=5.5cm]{Tibet_754.jpg} \\
+    \small (b): Colour composite of bands 7-5-4 
+  \end{tabular}
+    \begin{tabular}[b]{c}
+    \includegraphics[width=5.5cm]{Tibet_543.jpg} \\
+    \small (c): Colour composite of bands 5-4-3
+  \end{tabular}
+  \caption{Colour composites of the satellite image Landsat 8-9 OLI/TIRS (example of 2013): combination of various multispectral bands for identification of land features performed in the GRASS GIS. Source: author.}
+  \label{fig08n}
+\end{figure*}
+
+\subsection{Colour composites}
+Colour composites of the satellite image Landsat 8-9 OLI/TIRS were performed using combination of various multispectral bands for identification of land features performed in the GRASS GIS. technically, the command employed for creating composites is based on the 'r.composite' module of GRASS GIS as follows (example for bands 7-5-4 in image for 2013):
+
+\begin{verbatim}
+r.composite blue=L_2013_07 \
+	green=L_2013_05 red=L_2013_04 \
+	output=L_2013_754 --overwrite
+d.mon wx0
+d.rast L_2013_754
+d.out.file output=Tibet_754 \
+	format=jpg --overwrite
+\end{verbatim}
+
+The representation of selected colour composites is shown in Figure \ref{fig08n} with the selected bands 3-4-5, 7-5-4  and 5-4-3. Here, the correspondence of the bands in Landsat 8-9 OLI/TIRS to the spectral bands is as follows: Band 3 - Green; Band 4 - Red; Band 5 - Near Infrared (NIR); Band 7 - Shortwave Infrared (SWIR) 2. The use of various spectral bands helps to better detect land cover types otherwise hidden from the eyes and to better discriminate the border between distinct land cover types and water/snow boundaries. 
+
+\subsection{Clustering}
+
+First, the computational region has been set to match the scene extent which has the following coordinates of the central point: 90.64° N; 30.31° W. This was performed using the 'i.group' module as follows (the example in the snippet of codes here and below is given for the satellite image on 2013):
+ 
+\begin{verbatim}
+i.group group=L_2013 subgroup=res_30m \
+  input=L_2013_01,L_2013_02<...>L_2013_07
+\end{verbatim}
+
+Afterwards, the clustering has been performed using 'i.cluster' module which generates the signature file using data on spectral reflectance in the bands of the Landsat images and reports it using k-means clustering algorithm as follows: 
+\begin{verbatim}
+i.cluster group=L_2013 subgroup=res_30m \
+  signaturefile=cluster_L_2013 \
+  classes=10 reportfile=rep_clust_L_2013.txt
+ \end{verbatim}
+ 
+ Following that, the next step included the classification process which was implemented using the maximum likelihood discriminant analysis by i.maxlik module of GRASS GIS. The scripting code used for classification is as follows: 
+ \begin{verbatim}
+i.maxlik group=L_2013 subgroup=res_30m \
+  signaturefile=cluster_L_2013 \
+  output=L_2013_clusters reject=L_2013_cl_r
+ \end{verbatim}
+ 
+ \begin{figure*}[h!]
+  \centering
+  \begin{tabular}[b]{c}
     \includegraphics[width=5.5cm]{Fig_06a.jpg} \\
     \small (a): 2013
   \end{tabular}
@@ -266,29 +322,6 @@ Satellite images were processed and classified using the Geographic Resources An
   \label{fig06}
 \end{figure*}
 
-\subsection{Clustering}
-
-First, the computational region has been set to match the scene extent which has the following coordinates of the central point: 90.64° N; 30.31° W. This was performed using the 'i.group' module as follows (the example in the snippet of codes here and below is given for the satellite image on 2013):
- 
-\begin{verbatim}
-i.group group=L_2013 subgroup=res_30m \
-  input=L_2013_01,L_2013_02<...>L_2013_07
-\end{verbatim}
-
-Afterwards, the clustering has been performed using 'i.cluster' module which generates the signature file using data on spectral reflectance in the bands of the Landsat images and reports it using k-means clustering algorithm as follows: 
-\begin{verbatim}
-i.cluster group=L_2013 subgroup=res_30m \
-  signaturefile=cluster_L_2013 \
-  classes=10 reportfile=rep_clust_L_2013.txt
- \end{verbatim}
- 
- Following that, the next step included the classification process which was implemented using the maximum likelihood discriminant analysis by i.maxlik module of GRASS GIS. The scripting code used for classification is as follows: 
- \begin{verbatim}
-i.maxlik group=L_2013 subgroup=res_30m \
-  signaturefile=cluster_L_2013 \
-  output=L_2013_clusters reject=L_2013_cl_r
- \end{verbatim}
- 
  \subsection{Mapping}
  
 The visualization of the results of the classification was technically done using the set of cartographic modules in GRASS GIS as follows: 
@@ -309,36 +342,6 @@ d.legend raster=L_2013_clusters
 	border_color=white
 d.out.file output=Tibet_2013
  \end{verbatim}
-
-\begin{figure*}[h!]
-  \centering
-  \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_07a.jpg} \\
-    \small (a): 2013
-  \end{tabular}
-  \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_07b.jpg} \\
-    \small (b): 2015 
-  \end{tabular}
-    \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_07c.jpg} \\
-    \small (c): 2017
-  \end{tabular}
-  \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_07d.jpg} \\
-    \small (d): 2019 
-  \end{tabular}
-   \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_07e.jpg} \\
-    \small (e): 2021
-  \end{tabular}
-  \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_07f.jpg} \\
-    \small (f): 2023
-  \end{tabular}
-  \caption{Accuracy assessment of the satellite images Landsat 8-9 OLI/TIRS images: mapping rejection probability values that indicate pixel classification confidence levels performed using a chi square test. Source: author.}
-  \label{fig07}
-\end{figure*}
 
 \subsection{Classification}
 
@@ -384,31 +387,31 @@ Built-up areas cover all non-vegetated surfaces covered with impervious infrastr
 \begin{figure*}[h!]
   \centering
   \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_08a.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_07a.jpg} \\
     \small (a): 2013
   \end{tabular}
   \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_08b.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_07b.jpg} \\
     \small (b): 2015 
   \end{tabular}
     \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_08c.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_07c.jpg} \\
     \small (c): 2017
   \end{tabular}
   \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_08d.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_07d.jpg} \\
     \small (d): 2019 
   \end{tabular}
    \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_08e.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_07e.jpg} \\
     \small (e): 2021
   \end{tabular}
   \begin{tabular}[b]{c}
-    \includegraphics[width=5.5cm]{Fig_08f.jpg} \\
+    \includegraphics[width=5.5cm]{Fig_07f.jpg} \\
     \small (f): 2023
   \end{tabular}
-  \caption{Machine learning based classification of the satellite images Landsat 8-9 OLI/TIRS images: mapping land cover types using Random Forest classification algorithms by training dataset performed in the GRASS GIS. Source: author.}
-  \label{fig08}
+  \caption{Accuracy assessment of the satellite images Landsat 8-9 OLI/TIRS images: mapping rejection probability values that indicate pixel classification confidence levels performed using a chi square test. Source: author.}
+  \label{fig07}
 \end{figure*}
 
 \subsection{Machine Learning}
@@ -437,13 +440,43 @@ r.category rf_classification
 
 The raster categories are automatically applied to the classification output which was inspected using the 'r.category' module.
 
-%\pagebreak
 \subsection{Accuracy Assessment}
 
-\section{Results}
+\section{Results and Discussion}
 
-\section{Discussion}
+The results of the visualised maps of clusters are shown in Figure \ref{fig06}.
 
+\begin{figure*}[h!]
+  \centering
+  \begin{tabular}[b]{c}
+    \includegraphics[width=5.5cm]{Fig_08a.jpg} \\
+    \small (a): 2013
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=5.5cm]{Fig_08b.jpg} \\
+    \small (b): 2015 
+  \end{tabular}
+    \begin{tabular}[b]{c}
+    \includegraphics[width=5.5cm]{Fig_08c.jpg} \\
+    \small (c): 2017
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=5.5cm]{Fig_08d.jpg} \\
+    \small (d): 2019 
+  \end{tabular}
+   \begin{tabular}[b]{c}
+    \includegraphics[width=5.5cm]{Fig_08e.jpg} \\
+    \small (e): 2021
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=5.5cm]{Fig_08f.jpg} \\
+    \small (f): 2023
+  \end{tabular}
+  \caption{Machine learning based classification of the satellite images Landsat 8-9 OLI/TIRS images: mapping land cover types using Random Forest classification algorithms by training dataset performed in the GRASS GIS. Source: author.}
+  \label{fig08}
+\end{figure*}
+
+\pagebreak
 \section{Conclusion}
 
 \subsection{Summary}
