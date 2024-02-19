@@ -129,7 +129,9 @@ global change \sep Earth science \sep cartography \sep geoinformatics \sep remot
 
 \section{Introduction}
 
-Remote sensing data has proved to be a valuable tool for environmental monitoring as a spatio-temporal dynamics \cite{Wangetal2016,Shaoetal2008,Lemenkova202324,FASSNACHT2015115,Lemenkova202310} and detecting land cover changes in particular \cite{Kulkarni_Bahuguna_2002,jmse11040871}. They allow for rapid and effective data extraction for monitoring and mapping changes in land cover types across diverse areas worldwide. The key approach to processing satellite images is classification which can be performed using unsupervised (automatic) and supervised methods \cite{LI2023129285,Lemenkova202229,LI2020111915}. The main idea behind these methods lies in grouping pixels on the satellite images together so that they form clusters, or groups of pixels, with similar properties of spectral reflectance. The machine algorithms recognise similarities in spectral signatures of these pixels across all the bands and assigns them into classes during classification process \cite{LI2023103351,Lemenkova202321}. Classes may be categorised into the predefined land cover types identified on the study area. Once the classification is achieved and the accuracy assessment is completed, the maps obtained on the basis of the classified images are used for comparative analysis to analyse changes that take place over the specific study area for each land cover type that has taken place between the target time periods \cite{CHEN2007298,Lemenkova202323,LIU2021104942}.
+Cartographic visualization of land cover classification is often used in a variety of environmental applications. To mentioned a few of them, mapping land cover changes is useful for evaluating landscape dynamics \cite{HUANG20201039,DU2024168593,ZHAI2023110734}, agriculture monitoring and sustainable development \cite{CHEN2024111488,Qiuetal2003,info14040249,CHENG20231190}, analysing urban sprawl \cite{DING2022103001,ZHANG2023113801,ZHANG2022109715}; modelling habitats in reserved landscapes \cite{WEN2024}, applied geologic analysis \cite{LI2024100056}, classification and analysis of vegetation \cite{Lemenkova202021}, biodiversity conservation \cite{JIN2022108981,LUO2024111325} and land parcels segmentation \cite{LIU2023103265,Lemenkova202320}. Land cover mapping is also frequently used to visualise the expansion or retreat of lakes as a response to seasonal fluctuations in lacustrine environments \cite{ZhangGuoqingetal,Lemenkova202322,Lemenkova202313} assess ecosystem services \cite{Wei,Pasquarella} and assist in the land development, planning and policy \cite{Song}. 
+
+Remote sensing data has proved to be a valuable tool for cartographic visualization and environmental monitoring of landscapes as a spatio-temporal dynamics \cite{Wangetal2016,Shaoetal2008,Lemenkova202324,FASSNACHT2015115,Lemenkova202310,LIU2021102481} and detecting land cover changes in particular \cite{Kulkarni_Bahuguna_2002,jmse11040871}. They allow for rapid and effective data extraction for monitoring and mapping changes in land cover types across diverse areas worldwide. The key approach to processing satellite images is classification which can be performed using unsupervised (automatic) and supervised methods \cite{LI2023129285,Lemenkova202229,LI2020111915}. The main idea behind these methods lies in grouping pixels on the satellite images together so that they form clusters, or groups of pixels, with similar properties of spectral reflectance. The machine algorithms recognise similarities in spectral signatures of these pixels across all the bands and assigns them into classes during classification process \cite{LI2023103351,Lemenkova202321}. Classes may be categorised into the predefined land cover types identified on the study area. Once the classification is achieved and the accuracy assessment is completed, the maps obtained on the basis of the classified images are used for comparative analysis to analyse changes that take place over the specific study area for each land cover type that has taken place between the target time periods \cite{CHEN2007298,Lemenkova202323,LIU2021104942}.
 
 \begin{figure*}[h!]
     \begin{center}
@@ -140,7 +142,7 @@ Remote sensing data has proved to be a valuable tool for environmental monitorin
     \label{fig01}
 \end{figure*}
 
-This study investigates glacier retreat in the region of the Tibetan Plateau, China, with the special focus on the Lake Nam Co surroundings and Nyenchen Tanglha Mountains. Himalayan glaciers are important global water reservoirs which are essential factors for richness of biodiversity and ecosystems \cite{Rana,Koerner,LIU2022109097,LU2023115236}. The extended region of Hindu Kush Himalaya which includes the Pamirs, Tien Shan and Alatau Mountains plays a crucial role in the hydrology of Central Asia \cite{Bolch2019}. At the same time, they are highly sensitive to climate change and demonstrated shrinkage over the past decades. However, the rates and character of glacier retreat is still not well known with regard to regional differences. Although the most essential reason for glacier melt is caused by global warming, however, the responses to the increase in temperatures differ by regional glaciers. For example, while Himalayan glaciers are in general retreating, those located in the Karakorum, in contrast, advancing, and the glaciers in Nyenchen Tanglha Mountains are fluctuating. Moreover, strong effects of local topography on glacial and catchment morphology are reported by \cite{LOIBL201422}.
+This study investigates glacier retreat in the region of the Tibetan Plateau, China, with the special focus on the Lake Nam Co surroundings and Nyenchen Tanglha Mountains, Figure \ref{fig01}. Himalayan glaciers are important global water reservoirs which are essential factors for richness of biodiversity and ecosystems \cite{Rana,Koerner,LIU2022109097,LU2023115236}. The extended region of Hindu Kush Himalaya which includes the Pamirs, Tien Shan and Alatau Mountains plays a crucial role in the hydrology of Central Asia \cite{Bolch2019}. At the same time, they are highly sensitive to climate change and demonstrated shrinkage over the past decades. However, the rates and character of glacier retreat is still not well known with regard to regional differences. Although the most essential reason for glacier melt is caused by global warming, however, the responses to the increase in temperatures differ by regional glaciers. For example, while Himalayan glaciers are in general retreating, those located in the Karakorum, in contrast, advancing, and the glaciers in Nyenchen Tanglha Mountains are fluctuating. Moreover, strong effects of local topography on glacial and catchment morphology are reported by \cite{LOIBL201422}.
 
 Despite the necessary geographical and environmental conditions being in place for catastrophic potential of glacier retreat across the Lake Nam Co area, regional scale studies on comparative analysis of land cover changes caused by glacier retreat and snow melt are still limited for Nyenchen Tanglha Mountains. There are also many lacustrine basins in the region of Lhasa terrain region, that do not have received attention to monitor the size or rate of glacier retreat with regard to land cover changes analysis. At the same time, investigating changes in river and lake hydrology over Tibetan Plateau is perspective using satellite remote sensing data to analyse basin-wide land cover changes. Using remote sensing imagery processed by machine learning methods, this article examines the changes in land cover types over the ten-year period of 2013-2023 in Lake Nam Co and Nyenchen Tanglha Mountains, Tibetan Plateau, China, Figure \ref{fig01}.
 
@@ -191,9 +193,6 @@ Nam Co Lake significantly affects local climate and weather conditions through l
 
 \section{Data}
 
-The dataset covers the area of Lake Nam Co, southwestern region of the Tibetan Plateau, Figure \ref{fig04}. The United States Geological Survey (USGS) provided the necessary satellite imagery to perform, visualise and map land cover analysis with 30-m resolution multispectral Landsat 8-9 Operational Land Imager (OLI) and Thermal Infrared (TIRS) remotely sensed images. The satellite images cover study areas of Nyenchen Tanglha Mountains and Lake Nam Co for six dates in cold period with high level of snow/glacier extent: 31 December 2013, 21 December 2015, 10 December 2017, 16 December 2019, 21 December 2021, 03 December 2023. The high-quality images were selected for December, which is the period with the high snow and glacier extent. The images were selected with cloud-minimised visibility for comparison to analyse landscape dynamics (all the used available scenes had low cloudiness and low distortion of visibility). The Landsat OLI/TIRS image for 31 December 2013 was used as a training polygon for retrieving the seed for machine learning. The requirement for cloudiness level was set up on lesser than 10\% for all the Landsat images. These time periods reflected a significant variations in glacier and snow coverage over the ranges of Nyenchen Tanglha Mountains which shows the development of land cover types after snow and glacier melt, and hydrological-environmental setting of Nyenchen Tanglha Mountains and Lake Nam Co, Tibetan Plateau. The dataset is shown in Figure \ref{fig05}.
-
-Additional thematic data used in this study include Digital Elevation Model (DEM) used for analysis of relief, the Shuttle Radar Topography Mission (SRTM), the General Bathymetric Chart of the Oceans (GEBCO) for topographic mapping and geological dataset mapped using vector layers. Due to unprecedentedly detailed representation of the Earth's surface, the SRTM DEM proved to be a valuable source of information for terrain analysis \cite{Huang,Lemenkova202212,YAN2024108957}
 
 \begin{figure*}[h!]
   \centering
@@ -225,6 +224,10 @@ Additional thematic data used in this study include Digital Elevation Model (DEM
   \label{fig05}
 \end{figure*}
 
+The dataset covers the area of Lake Nam Co, southwestern region of the Tibetan Plateau, Figure \ref{fig04}. The United States Geological Survey (USGS) provided the necessary satellite imagery to perform, visualise and map land cover analysis with 30-m resolution multispectral Landsat 8-9 Operational Land Imager (OLI) and Thermal Infrared (TIRS) remotely sensed images. The satellite images cover study areas of Nyenchen Tanglha Mountains and Lake Nam Co for six dates in cold period with high level of snow/glacier extent: 31 December 2013, 21 December 2015, 10 December 2017, 16 December 2019, 21 December 2021, 03 December 2023. The high-quality images were selected for December, which is the period with the high snow and glacier extent. The images were selected with cloud-minimised visibility for comparison to analyse landscape dynamics (all the used available scenes had low cloudiness and low distortion of visibility). The Landsat OLI/TIRS image for 31 December 2013 was used as a training polygon for retrieving the seed for machine learning. The requirement for cloudiness level was set up on lesser than 10\% for all the Landsat images. These time periods reflected a significant variations in glacier and snow coverage over the ranges of Nyenchen Tanglha Mountains which shows the development of land cover types after snow and glacier melt, and hydrological-environmental setting of Nyenchen Tanglha Mountains and Lake Nam Co, Tibetan Plateau. The dataset is shown in Figure \ref{fig05}.
+
+Additional thematic data used in this study include Digital Elevation Model (DEM) used for analysis of relief, the Shuttle Radar Topography Mission (SRTM), the General Bathymetric Chart of the Oceans (GEBCO) for topographic mapping and geological dataset mapped using vector layers. Due to unprecedentedly detailed representation of the Earth's surface, the SRTM DEM proved to be a valuable source of information for terrain analysis \cite{Huang,Lemenkova202212,YAN2024108957}
+
 Along with the similarity in seasonal timing (winter period of December and November) necessary for comparing the differences in land cover types, the Landsat OLI/TIRS images had also already been ortho-rectified and corrected using Landsat Collection Level 1 corrections for terrain to allow for direct comparison of the imagery. All the data are predefined and projected using Universal Transverse Mercator (UTM) Zone 46 for western part of the People's Republic of China (P.R.C.). Basin-wide topographic raster data in digital format were available from GEBCO, NetCDF format, available from the \href{https://www.gebco.net/}{https://www.gebco.net/} GEBCO organisational website, which provided the necessary terrain reference data for the evaluation of relief of the surroundings. The topographic map has been plotted using Generic Mapping Tools (GMT) version 6.4.0 \cite{Wessel} using scripting methods for cartographic data visualization described in earlier works \cite{Lemenkova202217,Lemenkova202213,Lemenkova202206}.
 
 \section{Methods}
@@ -232,6 +235,46 @@ Satellite images were processed and classified using the Geographic Resources An
 
 \subsection{Clustering}
 
+First, the computational region has been set to match the scene extent which has the following coordinates of the central point: 90.64° N; 30.31° W. This was performed using the 'i.group' module as follows (the example in the snippet of codes here and below is given for the satellite image on 2013):
+ 
+\begin{verbatim}
+i.group group=L_2013 subgroup=res_30m \
+  input=L_2013_01,L_2013_02<...>L_2013_07
+\end{verbatim}
+
+Afterwards, the clustering has been performed using 'i.cluster' module which generates the signature file using data on spectral reflectance in the bands of the Landsat images and reports it using k-means clustering algorithm as follows: 
+\begin{verbatim}
+i.cluster group=L_2013 subgroup=res_30m \
+  signaturefile=cluster_L_2013 \
+  classes=10 reportfile=rep_clust_L_2013.txt
+ \end{verbatim}
+ 
+ Following that, the next step included the classification process which was implemented using the maximum likelihood discriminant analysis by i.maxlik module of GRASS GIS. The scripting code used for classification is as follows: 
+ \begin{verbatim}
+i.maxlik group=L_2013 subgroup=res_30m \
+  signaturefile=cluster_L_2013 \
+  output=L_2013_clusters reject=L_2013_cl_r
+ \end{verbatim}
+ 
+ The visualization of the results of the classification was technically done using the set of cartographic modules in GRASS GIS as follows: 
+ 
+  \begin{verbatim}
+r.colors L_2013_clusters color=roygbiv
+g.region raster=L_2013_01 -p
+d.mon wx0
+d.rast shaded_relief
+d.rast shaded_relief1
+d.rast L_2013_clusters
+d.grid -g size=00:30:00 color=white \
+	width=0.1 fontsize=12 text_color=white
+d.legend raster=L_2013_clusters 
+	title="31 December 2013" 
+	title_fontsize=14 font="Helvetica" 
+	fontsize=13 bgcolor=white 
+	border_color=white
+d.out.file output=Tibet_2013
+ \end{verbatim}
+ 
 \begin{figure*}[h!]
   \centering
   \begin{tabular}[b]{c}
