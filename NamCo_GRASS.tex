@@ -418,14 +418,26 @@ Built-up areas cover all non-vegetated surfaces covered with impervious infrastr
 
 Following land cover class identification using previous steps of clustering and classification and re-classification, all the six images had been reclassified using machine learning (ML) methods with a special approach of Random Forest (RF). 
 
-This approach employs the Scikit-Learn ML library of Python programming language along with its Pandas package for complimentary data processing. The essential idea of Random Forest algorithm lies in integrating the data to average noisy yet unbiased models of random data. In this way, RF reduces the variance in dataset. Since trees can capture complex interaction in cells, they are used in RF algorithm as a key approach to data modelling and analysis. First, the training pixels have been generated from an older land cover classification in 2013 using the 'r.random' module of the GRASS GIS as follows: 
+This approach employs the Scikit-Learn ML library of Python programming language along with its Pandas package for complimentary data processing. The essential idea of Random Forest algorithm lies in integrating the data to average noisy yet unbiased models of random data. In this way, RF reduces the variance in dataset. Since trees can capture complex interaction in cells, they are used in RF algorithm as a key approach to data modelling and analysis. The mathematical foundation of the RF classification consists in the following steps of the workflow. 
+
+For $b=1$ to $B$, a bootstrap sample $Z*$ of size $N$ from the training data has been drawn. Afterwards, the random-forest tree $T_b$ is increased to the bootstrapped data. This is done iteratively by the recursively repeating the logical steps for each terminal node of the tree that represent individual class in land cover classification, until the minimum node size $n_min$ is reached. The $m$ variables are selected randomly using the data obtained in 'r.random' module of GRASS GIS obtained from the pixels variables 'p'. The best variable/split-point are then selected among the $m$ and the model splits each node into two 'daughter' nodes. 
+
+Hence, the output model of the ensemble of trees is received as $\{T_b\}_1^B$. Then, to make a prediction of the assignment of each pixel within the matrix of the raster image to the specific land cover class, the model evaluates each new point $x$ (that is, a cell on the satellite image) using the following logical expression. 
+
+Let $\hat{C_b}(x)$ be the class prediction of the $b^{th}$ random-forest tree. Then, the RF classification is performed by running the following equation:
+
+\begin{equation}
+\hat{C^B_{rf}} = majority \:  vote \:  {\hat{C_b}(x)}_1^B
+\end{equation}
+
+Hence, random forest classification obtains a class vote from each tree, and then classifies it using majority vote and analysis of each pixel within the raster image. Technical implementation of the RF classification using GRASS GIS scripts consists in the following steps. First, the training pixels have been generated from an older land cover classification in 2013 using the 'r.random' module of the GRASS GIS as follows: 
 
 \begin{verbatim}
 r.random input=L_2013_clusters seed=100 \
 	npoints=1000 raster=training_pixels --overwrite
 \end{verbatim}
 
-Afterwards, these training pixels were used to perform a classification on the Landsat images for 2015, 2017, 2019, 2021 and 2023. The training of supervised approach was performed using the 'RandomForestClassifier' function in the 'r.learn.train' model of GRASS GIS and then evaluated the probability of each pixel to be assigned into the specific land coevr class using the 'r.learn.predict' module of GRASS GIS as follows:
+Afterwards, these training pixels were used to perform a classification on the Landsat images for 2015, 2017, 2019, 2021 and 2023. The training of supervised approach was performed using the 'RandomForestClassifier' function in the 'r.learn.train' model of GRASS GIS and then evaluated the probability of each pixel to be assigned into the specific land cover class using the 'r.learn.predict' module of GRASS GIS as follows:
 
 \begin{verbatim}
 r.learn.train group=L_2013 \
@@ -441,23 +453,6 @@ r.category rf_classification
 \end{verbatim}
 
 The raster categories are automatically applied to the classification output which was inspected using the 'r.category' module.
-
-\subsection{Accuracy Assessment}
-
-Accuracy assessment of the classification performed using by i.maxlik module evaluates the correctness of the classification the cell spectral reflectances in imagery data which is based on the spectral signature information. Technically, the code used for plotting accuracy assessment maps is presented below with a special function 'reject=': 
-
-\begin{verbatim}
-i.maxlik group=L_2013 subgroup=res_30m \
-	signaturefile=cluster_L_2013 \
-	output=L_2013_clusters 
-	reject=L_2013_cluster_reject 
-\end{verbatim}
- 
- The accuracy assessment evaluates the probability of correctly classified pixels and visualises the results on a map holding reject threshold results in percentage of the correctly classified pixels. The logic underlying this method is based on the chi square test which evaluates each discriminant result at various threshold levels of confidence to determine at what agreement each cell categorised correctly. Hence, it is the reject threshold map which contains the computed index to the calculated confidence level for each classified pixel in the classified raster scene of the satellite image. 
-  
-\section{Results and Discussion}
-
-The results of the visualised maps of clusters are shown in Figure \ref{fig06}.
 
 \begin{figure*}[h!]
   \centering
@@ -488,6 +483,23 @@ The results of the visualised maps of clusters are shown in Figure \ref{fig06}.
   \caption{Machine learning based classification of the satellite images Landsat 8-9 OLI/TIRS images: mapping land cover types using Random Forest classification algorithms by training dataset performed in the GRASS GIS. Source: author.}
   \label{fig08}
 \end{figure*}
+
+\subsection{Accuracy Assessment}
+
+Accuracy assessment of the classification performed using by i.maxlik module evaluates the correctness of the classification the cell spectral reflectances in imagery data which is based on the spectral signature information. Technically, the code used for plotting accuracy assessment maps is presented below with a special function 'reject=': 
+
+\begin{verbatim}
+i.maxlik group=L_2013 subgroup=res_30m \
+	signaturefile=cluster_L_2013 \
+	output=L_2013_clusters 
+	reject=L_2013_cluster_reject 
+\end{verbatim}
+ 
+ The accuracy assessment evaluates the probability of correctly classified pixels and visualises the results on a map holding reject threshold results in percentage of the correctly classified pixels. The logic underlying this method is based on the chi square test which evaluates each discriminant result at various threshold levels of confidence to determine at what agreement each cell categorised correctly. Hence, it is the reject threshold map which contains the computed index to the calculated confidence level for each classified pixel in the classified raster scene of the satellite image. 
+  
+\section{Results and Discussion}
+
+The results of the visualised maps of clusters are shown in Figure \ref{fig06}.
 
 \pagebreak
 \section{Conclusion}
