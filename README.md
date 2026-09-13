@@ -10,3 +10,8 @@ LaTeX source for the peer-reviewed article by Polina Lemenkova.
 
 ## Citation
 Lemenkova, P. Fluctuations of Glacier Extent in Lake Nam Co and Nyenchen Tanglha Mountains within a Decade as Detected by Machine Learning Methods of Image Analysis for Monitoring Lhasa Terrane, Tibetan Plateau. *Czech Polar Reports* **2025**, *15*(1), 15–37. https://doi.org/10.5817/CPR2025-1-2
+
+## Code
+
+The GRASS GIS scripts used to produce the results in this article are available at:
+https://github.com/paulinelemenkova/grass-ml-glaciers-tibet
